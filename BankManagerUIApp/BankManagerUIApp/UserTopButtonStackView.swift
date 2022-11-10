@@ -6,16 +6,17 @@ import UIKit
 
 final class UserTopButtonStackView: UIStackView {
     private let addCustomerButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
+        button.titleLabel?.font = .preferredFont(forTextStyle: .body)
         button.setTitle("고객 10명 추가", for: .normal)
-        button.setTitleColor(.systemBlue, for: .normal)
         return button
     }()
     
     private let resetButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
+        button.titleLabel?.font = .preferredFont(forTextStyle: .body)
         button.setTitle("초기화", for: .normal)
-        button.setTitleColor(.red, for: .normal)
+        button.setTitleColor(.systemRed, for: .normal)
         return button
     }()
     
@@ -32,7 +33,6 @@ final class UserTopButtonStackView: UIStackView {
     private func configureStackView() {
         axis = .horizontal
         distribution = .fillEqually
-        spacing = 10
     }
     
     private func addSubViews() {

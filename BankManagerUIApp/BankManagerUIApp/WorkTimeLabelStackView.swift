@@ -7,14 +7,14 @@ import UIKit
 class WorkTimeLabelStackView: UIStackView {
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "업무시간 - "
+        label.text = "업무시간 -"
         label.textAlignment = .right
         return label
     }()
     
     private let workTimeLabel: UILabel = {
         let label = UILabel()
-        label.text = "00:00:000"
+        label.text = " 00:00:000"
         label.textAlignment = .left
         return label
     }()
