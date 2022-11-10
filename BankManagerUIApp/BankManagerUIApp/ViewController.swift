@@ -10,6 +10,7 @@ final class ViewController: UIViewController {
     
     private let userTopButtonView = UserTopButtonStackView()
     private let workTimeLabel = WorkTimeLabelStackView()
+    private let queueLabel = QueueLabelStackView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,12 +22,14 @@ final class ViewController: UIViewController {
         addSubViews()
         makeConstraintTopButtonView()
         makeConstraintWorkTimeLabel()
+        makeConstraintQueueLabel()
     }
     
     private func addSubViews() {
         [
             userTopButtonView,
-            workTimeLabel
+            workTimeLabel,
+            queueLabel
         ].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
@@ -47,6 +50,14 @@ final class ViewController: UIViewController {
             workTimeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             workTimeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             workTimeLabel.topAnchor.constraint(equalTo: userTopButtonView.bottomAnchor, constant: 8)
+        ])
+    }
+    
+    private func makeConstraintQueueLabel() {
+        NSLayoutConstraint.activate([
+            queueLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            queueLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            queueLabel.topAnchor.constraint(equalTo: workTimeLabel.bottomAnchor, constant: 8)
         ])
     }
 }
