@@ -11,16 +11,11 @@ final class BankView: UIView {
     private let workTimeLabel = WorkTimeLabelStackView()
     private let queueLabel = QueueLabelStackView()
     
+    private let waitingLineScrollView = CustomerLineScrollView()
+    private let workingLineScrollView = CustomerLineScrollView()
+    
     private let stackView: UIStackView = {
-        let waitingLineScrollView = CustomerLineScrollView()
-        let workingLineScrollView = CustomerLineScrollView()
-        
-        let stackView = UIStackView(
-            arrangedSubviews: [
-                waitingLineScrollView,
-                workingLineScrollView
-            ]
-        )
+        let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         return stackView
@@ -28,12 +23,21 @@ final class BankView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        
+        addStackView()
         configureUI()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+    
+    private func addStackView() {
+        [
+            waitingLineScrollView,
+            workingLineScrollView
+        ].forEach {
+            stackView.addArrangedSubview($0)
+        }
     }
     
     private func configureUI() {
@@ -93,5 +97,21 @@ final class BankView: UIView {
     
     func requireUpdateTime(input: String) {
         workTimeLabel.updateWorkTimeLabel(input: input)
+    }
+    
+    func addNewCustomerView(customer: Customer) {
+        waitingLineScrollView.inputCustomer(customer: customer)
+    }
+    
+    func popNewCustomerView(customer: Customer) {
+        waitingLineScrollView.popCustomer(customer: customer)
+    }
+    
+    func addNewWorkingCustomerView(customer: Customer) {
+        workingLineScrollView.inputCustomer(customer: customer)
+    }
+    
+    func popWorkingCustomerView(customer: Customer) {
+        workingLineScrollView.popCustomer(customer: customer)
     }
 }

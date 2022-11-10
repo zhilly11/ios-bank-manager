@@ -9,16 +9,50 @@ import UIKit
 typealias ReportData = (customerCount: Int, duringTime: TimeInterval)
 
 class BankViewController: UIViewController {
-    
     let bankView = BankView()
     let bank: Bank = Bank()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view = bankView
         openBank()
-        print(startBankWork())        
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(didReceiveStartCustomer(_:)),
+            name: notificationName.start,
+            object: nil
+        )
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(didReceiveEndCustomer(_:)),
+            name: notificationName.end,
+            object: nil
+        )
+    }
+    
+    @objc func didReceiveStartCustomer(_ noti: Notification) {
+        guard let customer = noti.object as? Customer else {
+            return
+        }
+        
+        bankView.popNewCustomerView(customer: customer)
+        bankView.addNewWorkingCustomerView(customer: customer)
+    }
+    
+    @objc func didReceiveEndCustomer(_ noti: Notification) {
+        guard let customer = noti.object as? Customer else {
+            return
+        }
+        
+        bankView.popWorkingCustomerView(customer: customer)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let time = startBankWork()
+        print(time.duringTime)
     }
     
     func openBank() {
@@ -29,8 +63,8 @@ class BankViewController: UIViewController {
         for turn in 1...customerCount {
             guard let business = BankBusiness.allCases.randomElement() else { continue }
             let newCustomer: Customer = Customer(ticketNumber: turn, business: business)
-            self.bank.addCustomer(customer: newCustomer)
-            print(bank)
+            bank.addCustomer(customer: newCustomer)
+            bankView.addNewCustomerView(customer: newCustomer)
         }
     }
     
@@ -44,9 +78,9 @@ class BankViewController: UIViewController {
         bank.resetCustomerQueue()
     }
     
-    func measureTime(_ closure: () -> (Int)) -> ReportData {
+    func measureTime(_ closure: () -> Void) -> ReportData {
         let startDate = Date()
-        let userCount = closure()
-        return (userCount, Date().timeIntervalSince(startDate))
+        closure()
+        return (0, Date().timeIntervalSince(startDate))
     }
 }

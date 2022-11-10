@@ -21,19 +21,21 @@ class Bank {
         customerQueue?.enqueue(value: customer)
     }
     
-    func startWork() -> Int {
+    func startWork() {
         let waitingLines = setUpWaitingLine()
         
         var userCount = 0
         
         while !isQueueEmpty {
             guard let customer = customerQueue?.dequeue() else {
-                return 0
+                return
             }
             
             let customerOperation = BankerOperation(customer: customer)
             
-            customerOperation.completionBlock = { userCount += 1 }
+            customerOperation.completionBlock = {
+                userCount += 1
+            }
             
             switch customer.business {
             case .deposit:
@@ -42,10 +44,6 @@ class Bank {
                 waitingLines.loansQueue.addOperation(customerOperation)
             }
         }
-        waitingLines.depositQueue.waitUntilAllOperationsAreFinished()
-        waitingLines.loansQueue.waitUntilAllOperationsAreFinished()
-        
-        return userCount
     }
     
     func resetCustomerQueue() {

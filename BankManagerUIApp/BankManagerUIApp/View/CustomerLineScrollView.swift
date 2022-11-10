@@ -45,11 +45,37 @@ class CustomerLineScrollView: UIScrollView {
     }
     
     func inputCustomer(customer: Customer) {
-        let label = UILabel()
         let business = customer.business
+        let ticketNumber = customer.ticketNumber.description
         
-        label.text = "\(customer.ticketNumber)" + " - " + business.rawValue
-        
-        contentStackView.addSubview(label)
+        DispatchQueue.main.async {
+            let label = UILabel()
+            label.text = "\(ticketNumber) - \(business.rawValue)"
+            label.textAlignment = .center
+            label.tag = customer.ticketNumber
+            
+            switch business {
+            case .deposit:
+                label.textColor = .label
+            case .loans:
+                label.textColor = .systemPurple
+            }
+            
+            self.contentStackView.addArrangedSubview(label)
+        }
+    }
+    
+    func popCustomer(customer: Customer) {
+        DispatchQueue.main.async {
+            guard let contents = self.contentStackView.arrangedSubviews as? [UILabel] else {
+                return
+            }
+            
+            guard let content = contents.filter({ $0.tag == customer.ticketNumber }).first else {
+                return
+            }
+            
+            content.removeFromSuperview()
+        }
     }
 }
