@@ -6,6 +6,8 @@
 
 import Foundation
 
+typealias ReportData = (customerCount: Int, duringTime: TimeInterval)
+
 struct BankManager {
     private var bank: Bank
     

@@ -38,8 +38,6 @@ final class ViewController: UIViewController {
         makeConstraintTopButtonView()
         makeConstraintWorkTimeLabel()
         makeConstraintQueueLabel()
-//        makeConstraintWaitingScrollView()
-//        makeConstraintWorkingScrollView()
         makeConstraintStackView()
     }
     
@@ -85,7 +83,7 @@ final class ViewController: UIViewController {
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             stackView.topAnchor.constraint(equalTo: queueLabel.bottomAnchor),
-            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }
