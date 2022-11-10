@@ -6,8 +6,7 @@
 
 import UIKit
 
-final class ViewController: UIViewController {
-    
+final class BankView: UIView {
     private let userTopButtonView = UserTopButtonStackView()
     private let workTimeLabel = WorkTimeLabelStackView()
     private let queueLabel = QueueLabelStackView()
@@ -27,13 +26,18 @@ final class ViewController: UIViewController {
         return stackView
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override init(frame: CGRect) {
+        super.init(frame: .zero)
         
         configureUI()
     }
     
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
     private func configureUI() {
+        backgroundColor = .systemBackground
         addSubViews()
         makeConstraintTopButtonView()
         makeConstraintWorkTimeLabel()
@@ -49,41 +53,41 @@ final class ViewController: UIViewController {
             stackView
         ].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview($0)
+            addSubview($0)
         }
     }
     
     private func makeConstraintTopButtonView() {
-        let safeArea = view.safeAreaLayoutGuide
+        let safeArea = safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            userTopButtonView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            userTopButtonView.leadingAnchor.constraint(equalTo: leadingAnchor),
             userTopButtonView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            userTopButtonView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            userTopButtonView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
     
     private func makeConstraintWorkTimeLabel() {
         NSLayoutConstraint.activate([
-            workTimeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            workTimeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            workTimeLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            workTimeLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             workTimeLabel.topAnchor.constraint(equalTo: userTopButtonView.bottomAnchor, constant: 8)
         ])
     }
     
     private func makeConstraintQueueLabel() {
         NSLayoutConstraint.activate([
-            queueLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            queueLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            queueLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            queueLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             queueLabel.topAnchor.constraint(equalTo: workTimeLabel.bottomAnchor, constant: 8)
         ])
     }
     
     private func makeConstraintStackView() {
         NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             stackView.topAnchor.constraint(equalTo: queueLabel.bottomAnchor),
-            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }

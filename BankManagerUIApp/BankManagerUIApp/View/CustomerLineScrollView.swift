@@ -10,17 +10,6 @@ class CustomerLineScrollView: UIScrollView {
     private let contentStackView: UIStackView = {
         let stackView = UIStackView()
         
-        for _ in 0...20 {
-            let label = UILabel()
-            
-            label.text = "example"
-            label.textColor = .label
-            label.textAlignment = .center
-            label.font = .preferredFont(forTextStyle: .title3)
-            label.adjustsFontForContentSizeCategory = true
-            stackView.addArrangedSubview(label)
-        }
-        
         stackView.axis = .vertical
         stackView.distribution = .equalSpacing
         stackView.spacing = 20
