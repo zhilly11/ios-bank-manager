@@ -40,6 +40,7 @@ class CustomerLineScrollView: UIScrollView {
     private func configureUI() {
         showsVerticalScrollIndicator = false
         showsHorizontalScrollIndicator = false
+        
         translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(contentStackView)
@@ -50,7 +51,8 @@ class CustomerLineScrollView: UIScrollView {
             contentStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             contentStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             contentStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            contentStackView.widthAnchor.constraint(equalTo: widthAnchor)
+//            contentStackView.widthAnchor.constraint(equalTo: frameLayoutGuide.widthAnchor, multiplier: 0.99999),
+            contentStackView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.99999)
         ])
     }
 }
