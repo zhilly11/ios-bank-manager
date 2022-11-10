@@ -90,4 +90,8 @@ final class BankView: UIView {
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
+    
+    func requireUpdateTime(input: String) {
+        workTimeLabel.updateWorkTimeLabel(input: input)
+    }
 }

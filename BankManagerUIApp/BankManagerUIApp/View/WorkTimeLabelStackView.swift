@@ -38,4 +38,8 @@ class WorkTimeLabelStackView: UIStackView {
         self.addArrangedSubview(titleLabel)
         self.addArrangedSubview(workTimeLabel)
     }
+    
+    func updateWorkTimeLabel(input: String) {
+        workTimeLabel.text = input
+    }
 }

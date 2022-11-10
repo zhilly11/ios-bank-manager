@@ -6,22 +6,22 @@
 
 import Foundation
 
-struct Bank {
+class Bank {
     private var customerQueue: CustomerQueue<Customer>?
     
     private var isQueueEmpty: Bool {
         return customerQueue?.isEmpty ?? true
     }
-
-    mutating func createQueue() {
+    
+    func createQueue() {
         customerQueue = CustomerQueue()
     }
-
-    mutating func addCustomer(customer: Customer) {
+    
+    func addCustomer(customer: Customer) {
         customerQueue?.enqueue(value: customer)
     }
-
-    mutating func startWork() -> Int {
+    
+    func startWork() -> Int {
         let waitingLines = setUpWaitingLine()
         
         var userCount = 0
@@ -47,8 +47,8 @@ struct Bank {
         
         return userCount
     }
-
-    mutating func resetCustomerQueue() {
+    
+    func resetCustomerQueue() {
         customerQueue?.clear()
         customerQueue = nil
     }

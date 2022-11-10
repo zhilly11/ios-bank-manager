@@ -43,4 +43,13 @@ class CustomerLineScrollView: UIScrollView {
             contentStackView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.99999)
         ])
     }
+    
+    func inputCustomer(customer: Customer) {
+        let label = UILabel()
+        let business = customer.business
+        
+        label.text = "\(customer.ticketNumber)" + " - " + business.rawValue
+        
+        contentStackView.addSubview(label)
+    }
 }
