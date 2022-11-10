@@ -40,4 +40,3 @@ final class UserTopButtonStackView: UIStackView {
         self.addArrangedSubview(resetButton)
     }
 }
-
