@@ -6,7 +6,7 @@
 
 import UIKit
 
-class CustomerLineScrollView: UIScrollView {
+class CustomerLineScrollView: UIScrollView, UIScrollViewDelegate {
     private let contentStackView: UIStackView = {
         let stackView = UIStackView()
         
@@ -27,6 +27,8 @@ class CustomerLineScrollView: UIScrollView {
     }
     
     private func configureUI() {
+        delegate = self
+        
         showsVerticalScrollIndicator = false
         showsHorizontalScrollIndicator = false
         
@@ -40,7 +42,7 @@ class CustomerLineScrollView: UIScrollView {
             contentStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             contentStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             contentStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            contentStackView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.99999)
+            contentStackView.widthAnchor.constraint(equalTo: widthAnchor)
         ])
     }
     
@@ -78,4 +80,11 @@ class CustomerLineScrollView: UIScrollView {
             content.removeFromSuperview()
         }
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.x != 0 {
+            scrollView.contentOffset.x = 0
+        }
+    }
 }
+	

@@ -17,6 +17,7 @@ final class BankView: UIView {
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
+        stackView.spacing = 10
         stackView.distribution = .fillEqually
         return stackView
     }()
@@ -46,7 +47,9 @@ final class BankView: UIView {
         makeConstraintTopButtonView()
         makeConstraintWorkTimeLabel()
         makeConstraintQueueLabel()
-        makeConstraintStackView()
+//        makeConstraintStackView()
+        makeConstraintWaitingView()
+        makeConstraintWorkingView()
     }
     
     private func addSubViews() {
@@ -54,7 +57,9 @@ final class BankView: UIView {
             userTopButtonView,
             workTimeLabel,
             queueLabel,
-            stackView
+//            stackView
+            waitingLineScrollView,
+            workingLineScrollView
         ].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             addSubview($0)
@@ -86,12 +91,30 @@ final class BankView: UIView {
         ])
     }
     
-    private func makeConstraintStackView() {
+//    private func makeConstraintStackView() {
+//        NSLayoutConstraint.activate([
+//            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
+//            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+//            stackView.topAnchor.constraint(equalTo: queueLabel.bottomAnchor),
+//            stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+//        ])
+//    }
+    
+    private func makeConstraintWaitingView() {
         NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            stackView.topAnchor.constraint(equalTo: queueLabel.bottomAnchor),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            waitingLineScrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            waitingLineScrollView.trailingAnchor.constraint(equalTo: centerXAnchor),
+            waitingLineScrollView.topAnchor.constraint(equalTo: queueLabel.bottomAnchor),
+            waitingLineScrollView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+    }
+    
+    private func makeConstraintWorkingView() {
+        NSLayoutConstraint.activate([
+            workingLineScrollView.leadingAnchor.constraint(equalTo: centerXAnchor),
+            workingLineScrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            workingLineScrollView.topAnchor.constraint(equalTo: queueLabel.bottomAnchor),
+            workingLineScrollView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     

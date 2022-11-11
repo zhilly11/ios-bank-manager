@@ -51,6 +51,9 @@ class BankViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        sleep(10)
+        
         let time = startBankWork()
         print(time.duringTime)
     }
