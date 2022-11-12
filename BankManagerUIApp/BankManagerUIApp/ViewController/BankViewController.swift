@@ -6,8 +6,6 @@
         
 import UIKit
 
-typealias ReportData = (customerCount: Int, duringTime: TimeInterval)
-
 class BankViewController: UIViewController {
     let bankView = BankView()
     let bank: Bank = Bank()
@@ -19,17 +17,18 @@ class BankViewController: UIViewController {
         
         addObserveStartWork()
         addObserveEndWork()
-        
-
     }
-    
-    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        startBankWork()
+        bank.startWork()
+        
+        bank.resetCustomerQueue()
     }
-    
+}
+
+// MARK: Bank Method
+private extension BankViewController {
     func openBank() {
         bank.createQueue()
         
@@ -42,16 +41,9 @@ class BankViewController: UIViewController {
             bankView.addNewCustomerView(customer: newCustomer)
         }
     }
-    
-    func startBankWork() {
-        bank.startWork()
-    }
-    
-    func closeBank() {
-        bank.resetCustomerQueue()
-    }
 }
 
+// MARK: NotificationCenter Method
 private extension BankViewController {
     func addObserveStartWork() {
         NotificationCenter.default.addObserver(
