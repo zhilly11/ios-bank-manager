@@ -24,7 +24,12 @@ final class UserTopButtonStackView: UIStackView {
     }
     
     private func addSubViews() {
-        self.addArrangedSubview(addCustomerButton)
-        self.addArrangedSubview(resetButton)
+        resetButton.setTitleColor(.systemRed, for: .normal)
+        [
+            addCustomerButton,
+            resetButton
+        ].forEach {
+            addArrangedSubview($0)
+        }
     }
 }

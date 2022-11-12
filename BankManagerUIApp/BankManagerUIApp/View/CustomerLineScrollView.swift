@@ -87,4 +87,3 @@ class CustomerLineScrollView: UIScrollView, UIScrollViewDelegate {
         }
     }
 }
-	

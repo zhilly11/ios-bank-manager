@@ -51,11 +51,7 @@ class BankViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        sleep(10)
-        
-        let time = startBankWork()
-        print(time.duringTime)
+        startBankWork()
     }
     
     func openBank() {
@@ -71,19 +67,11 @@ class BankViewController: UIViewController {
         }
     }
     
-    func startBankWork() -> ReportData {
-        return measureTime {
-            bank.startWork()
-        }
+    func startBankWork() {
+        bank.startWork()
     }
     
     func closeBank() {
         bank.resetCustomerQueue()
-    }
-    
-    func measureTime(_ closure: () -> Void) -> ReportData {
-        let startDate = Date()
-        closure()
-        return (0, Date().timeIntervalSince(startDate))
     }
 }

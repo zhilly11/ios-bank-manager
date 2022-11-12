@@ -7,10 +7,7 @@
 import UIKit
 
 final class BankView: UIView {
-    private let userTopButtonView = UserTopButtonStackView()
-    private let workTimeLabel = WorkTimeLabelStackView()
-    private let queueLabel = QueueLabelStackView()
-    
+    private let userTopControlStackView = UserTopControlStackView()
     private let waitingLineScrollView = CustomerLineScrollView()
     private let workingLineScrollView = CustomerLineScrollView()
     
@@ -44,20 +41,14 @@ final class BankView: UIView {
     private func configureUI() {
         backgroundColor = .systemBackground
         addSubViews()
-        makeConstraintTopButtonView()
-        makeConstraintWorkTimeLabel()
-        makeConstraintQueueLabel()
-//        makeConstraintStackView()
+        makeConstraintControlView()
         makeConstraintWaitingView()
         makeConstraintWorkingView()
     }
     
     private func addSubViews() {
         [
-            userTopButtonView,
-            workTimeLabel,
-            queueLabel,
-//            stackView
+            userTopControlStackView,
             waitingLineScrollView,
             workingLineScrollView
         ].forEach {
@@ -66,45 +57,23 @@ final class BankView: UIView {
         }
     }
     
-    private func makeConstraintTopButtonView() {
+    private func makeConstraintControlView() {
         let safeArea = safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            userTopButtonView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            userTopButtonView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            userTopButtonView.trailingAnchor.constraint(equalTo: trailingAnchor)
+            userTopControlStackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            userTopControlStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            userTopControlStackView.topAnchor.constraint(equalTo: safeArea.topAnchor)
         ])
     }
-    
-    private func makeConstraintWorkTimeLabel() {
-        NSLayoutConstraint.activate([
-            workTimeLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            workTimeLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            workTimeLabel.topAnchor.constraint(equalTo: userTopButtonView.bottomAnchor, constant: 8)
-        ])
-    }
-    
-    private func makeConstraintQueueLabel() {
-        NSLayoutConstraint.activate([
-            queueLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            queueLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            queueLabel.topAnchor.constraint(equalTo: workTimeLabel.bottomAnchor, constant: 8)
-        ])
-    }
-    
-//    private func makeConstraintStackView() {
-//        NSLayoutConstraint.activate([
-//            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-//            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-//            stackView.topAnchor.constraint(equalTo: queueLabel.bottomAnchor),
-//            stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-//        ])
-//    }
     
     private func makeConstraintWaitingView() {
         NSLayoutConstraint.activate([
             waitingLineScrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
             waitingLineScrollView.trailingAnchor.constraint(equalTo: centerXAnchor),
-            waitingLineScrollView.topAnchor.constraint(equalTo: queueLabel.bottomAnchor),
+            waitingLineScrollView.topAnchor.constraint(
+                equalTo: userTopControlStackView.bottomAnchor,
+                constant: 10
+            ),
             waitingLineScrollView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
@@ -113,13 +82,12 @@ final class BankView: UIView {
         NSLayoutConstraint.activate([
             workingLineScrollView.leadingAnchor.constraint(equalTo: centerXAnchor),
             workingLineScrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            workingLineScrollView.topAnchor.constraint(equalTo: queueLabel.bottomAnchor),
+            workingLineScrollView.topAnchor.constraint(
+                equalTo: userTopControlStackView.bottomAnchor,
+                constant: 10
+            ),
             workingLineScrollView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
-    }
-    
-    func requireUpdateTime(input: String) {
-        workTimeLabel.updateWorkTimeLabel(input: input)
     }
     
     func addNewCustomerView(customer: Customer) {

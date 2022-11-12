@@ -11,6 +11,7 @@
 		1824A110291D4394002D9E12 /* BankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1824A10F291D4394002D9E12 /* BankViewController.swift */; };
 		185B83A1291F75F9005B4837 /* UILabel +.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B83A0291F75F9005B4837 /* UILabel +.swift */; };
 		185B83A3291F770C005B4837 /* UIButton + .swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B83A2291F770C005B4837 /* UIButton + .swift */; };
+		185B83A5291F800C005B4837 /* UserTopControlStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B83A4291F800C005B4837 /* UserTopControlStackView.swift */; };
 		48AFC9498A18E7258674D77B /* Pods_BankManagerUIAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E777FD487A6D2BC337AE8F23 /* Pods_BankManagerUIAppTests.framework */; };
 		7D66B248D7592C452F45B854 /* Pods_BankManagerUIApp_BankManagerUIAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 402F36DBE1D7A57C7ABA1FEB /* Pods_BankManagerUIApp_BankManagerUIAppUITests.framework */; };
 		8D776F7F9B840B61393B2BCE /* Pods_BankManagerUIApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C98AAE3D701AE1B274E5EB /* Pods_BankManagerUIApp.framework */; };
@@ -58,6 +59,7 @@
 		1824A10F291D4394002D9E12 /* BankViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankViewController.swift; sourceTree = "<group>"; };
 		185B83A0291F75F9005B4837 /* UILabel +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel +.swift"; sourceTree = "<group>"; };
 		185B83A2291F770C005B4837 /* UIButton + .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + .swift"; sourceTree = "<group>"; };
+		185B83A4291F800C005B4837 /* UserTopControlStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTopControlStackView.swift; sourceTree = "<group>"; };
 		2032A03AD2B39DE8B5A8490F /* Pods-BankManagerUIApp-BankManagerUIAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BankManagerUIApp-BankManagerUIAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-BankManagerUIApp-BankManagerUIAppUITests/Pods-BankManagerUIApp-BankManagerUIAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		227E9FF2C761B23CE05C35A3 /* Pods-BankManagerUIApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BankManagerUIApp.release.xcconfig"; path = "Target Support Files/Pods-BankManagerUIApp/Pods-BankManagerUIApp.release.xcconfig"; sourceTree = "<group>"; };
 		402F36DBE1D7A57C7ABA1FEB /* Pods_BankManagerUIApp_BankManagerUIAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BankManagerUIApp_BankManagerUIAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +126,10 @@
 		185B839E291F75DF005B4837 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				B4279488291CF1ED00EDCDB0 /* QueueLabelStackView.swift */,
+				B4279486291CB98100EDCDB0 /* WorkTimeLabelStackView.swift */,
+				B4279484291CB0C600EDCDB0 /* UserTopButtonStackView.swift */,
+				185B83A4291F800C005B4837 /* UserTopControlStackView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -190,9 +196,6 @@
 				185B839F291F75EF005B4837 /* Extensions */,
 				185B839E291F75DF005B4837 /* SubViews */,
 				C7694E3E259C3E9F0053667F /* BankView.swift */,
-				B4279484291CB0C600EDCDB0 /* UserTopButtonStackView.swift */,
-				B4279486291CB98100EDCDB0 /* WorkTimeLabelStackView.swift */,
-				B4279488291CF1ED00EDCDB0 /* QueueLabelStackView.swift */,
 				1824A10C291D0FE9002D9E12 /* CustomerLineScrollView.swift */,
 				C7694E40259C3E9F0053667F /* Main.storyboard */,
 				C7694E45259C3EA20053667F /* LaunchScreen.storyboard */,
@@ -494,6 +497,7 @@
 				185B83A1291F75F9005B4837 /* UILabel +.swift in Sources */,
 				B4279495291D3EB700EDCDB0 /* BankerOperation.swift in Sources */,
 				B4279492291D3EB700EDCDB0 /* Customer.swift in Sources */,
+				185B83A5291F800C005B4837 /* UserTopControlStackView.swift in Sources */,
 				B4279485291CB0C600EDCDB0 /* UserTopButtonStackView.swift in Sources */,
 				B4279489291CF1ED00EDCDB0 /* QueueLabelStackView.swift in Sources */,
 				B4279493291D3EB700EDCDB0 /* Bank.swift in Sources */,
