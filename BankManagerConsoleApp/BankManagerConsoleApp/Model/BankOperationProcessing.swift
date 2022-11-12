@@ -6,9 +6,13 @@
 
 import Foundation
 
-enum notificationName {
-    static let start = Notification.Name(rawValue: "start")
-    static let end = Notification.Name(rawValue: "end")
+enum notificationName: String {
+    case start
+    case end
+    
+    var notiName: Notification.Name {
+        return Notification.Name(rawValue: self.rawValue)
+    }
 }
 
 protocol BankOperationProcessing {
@@ -20,14 +24,14 @@ protocol BankOperationProcessing {
 extension BankOperationProcessing {
     func work(customer: Customer) {
         NotificationCenter.default.post(
-            name: notificationName.start,
+            name: notificationName.start.notiName,
             object: customer
         )
         
         Thread.sleep(forTimeInterval: customer.business.businessTime)
         
         NotificationCenter.default.post(
-            name: notificationName.end,
+            name: notificationName.end.notiName,
             object: customer
         )
     }

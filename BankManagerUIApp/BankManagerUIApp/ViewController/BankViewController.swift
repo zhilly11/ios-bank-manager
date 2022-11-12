@@ -17,37 +17,13 @@ class BankViewController: UIViewController {
         view = bankView
         openBank()
         
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(didReceiveStartCustomer(_:)),
-            name: notificationName.start,
-            object: nil
-        )
+        addObserveStartWork()
+        addObserveEndWork()
         
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(didReceiveEndCustomer(_:)),
-            name: notificationName.end,
-            object: nil
-        )
+
     }
     
-    @objc func didReceiveStartCustomer(_ noti: Notification) {
-        guard let customer = noti.object as? Customer else {
-            return
-        }
-        
-        bankView.popNewCustomerView(customer: customer)
-        bankView.addNewWorkingCustomerView(customer: customer)
-    }
     
-    @objc func didReceiveEndCustomer(_ noti: Notification) {
-        guard let customer = noti.object as? Customer else {
-            return
-        }
-        
-        bankView.popWorkingCustomerView(customer: customer)
-    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -73,5 +49,41 @@ class BankViewController: UIViewController {
     
     func closeBank() {
         bank.resetCustomerQueue()
+    }
+}
+
+private extension BankViewController {
+    func addObserveStartWork() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(didReceiveOperationNotification(_:)),
+            name: notificationName.start.notiName,
+            object: nil
+        )
+    }
+    
+    func addObserveEndWork() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(didReceiveOperationNotification(_:)),
+            name: notificationName.end.notiName,
+            object: nil
+        )
+    }
+    
+    @objc func didReceiveOperationNotification(_ noti: Notification) {
+        guard let customer = noti.object as? Customer,
+              let notiCase = notificationName(rawValue: noti.name.rawValue) else {
+            return
+        }
+        
+        switch notiCase {
+        case .start:
+            bankView.popNewCustomerView(customer: customer)
+            bankView.addNewWorkingCustomerView(customer: customer)
+        case .end:
+            bankView.popWorkingCustomerView(customer: customer)
+
+        }
     }
 }
