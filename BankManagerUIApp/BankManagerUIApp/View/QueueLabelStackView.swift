@@ -5,25 +5,20 @@
 import UIKit
 
 class QueueLabelStackView: UIStackView {
-    private let waitingLabel: UILabel = {
-        let label = UILabel()
-        label.text = "대기중"
-        label.backgroundColor = .systemGreen
-        label.textColor = .white
-        label.textAlignment = .center
-        label.font = .preferredFont(forTextStyle: .title1)
-        return label
-    }()
+    private let waitingLabel = UILabel(
+        text: "대기중",
+        alignment: .center,
+        font: .preferredFont(forTextStyle: .title1),
+        backgroundColor: .systemGreen,
+        textColor: .white
+    )
     
-    private let workingLabel: UILabel = {
-        let label = UILabel()
-        label.text = "업무중"
-        label.backgroundColor = .systemIndigo
-        label.textColor = .white
-        label.textAlignment = .center
-        label.font = .preferredFont(forTextStyle: .title1)
-        return label
-    }()
+    private let workingLabel = UILabel(
+        text: "업무중",
+        alignment: .center,
+        font: .preferredFont(forTextStyle: .title1),
+        backgroundColor: .systemIndigo, textColor: .white
+    )
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,14 +29,22 @@ class QueueLabelStackView: UIStackView {
     required init(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
-    private func configureStackView() {
+}
+
+// MARK: UI Configure Method
+private extension QueueLabelStackView {
+    func configureStackView() {
         axis = .horizontal
         distribution = .fillEqually
     }
     
-    private func addSubViews() {
-        self.addArrangedSubview(waitingLabel)
-        self.addArrangedSubview(workingLabel)
+    func addSubViews() {
+        [
+            waitingLabel,
+            workingLabel
+        ].forEach {
+            addArrangedSubview($0)
+        }
     }
+    
 }

@@ -4,20 +4,10 @@
 
 import UIKit
 
-class WorkTimeLabelStackView: UIStackView {
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "업무시간 -"
-        label.textAlignment = .right
-        return label
-    }()
+final class WorkTimeLabelStackView: UIStackView {
+    private let titleLabel = UILabel(text: "업무 시간 -", alignment: .right)
     
-    private let workTimeLabel: UILabel = {
-        let label = UILabel()
-        label.text = " 00:00:000"
-        label.textAlignment = .left
-        return label
-    }()
+    private let workTimeLabel = UILabel(text: " 00:00:000", alignment: .left)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,8 +25,12 @@ class WorkTimeLabelStackView: UIStackView {
     }
     
     private func addSubViews() {
-        self.addArrangedSubview(titleLabel)
-        self.addArrangedSubview(workTimeLabel)
+        [
+            titleLabel,
+            workTimeLabel
+        ].forEach {
+            addArrangedSubview($0)
+        }
     }
     
     func updateWorkTimeLabel(input: String) {

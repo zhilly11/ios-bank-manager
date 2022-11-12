@@ -5,20 +5,8 @@
 import UIKit
 
 final class UserTopButtonStackView: UIStackView {
-    private let addCustomerButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.titleLabel?.font = .preferredFont(forTextStyle: .body)
-        button.setTitle("고객 10명 추가", for: .normal)
-        return button
-    }()
-    
-    private let resetButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.titleLabel?.font = .preferredFont(forTextStyle: .body)
-        button.setTitle("초기화", for: .normal)
-        button.setTitleColor(.systemRed, for: .normal)
-        return button
-    }()
+    private let addCustomerButton = UIButton(title: "고객 10명 추가")
+    private let resetButton = UIButton(title: "초기화")
     
     override init(frame: CGRect) {
         super.init(frame: frame)
