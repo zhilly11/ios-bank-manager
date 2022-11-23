@@ -3,12 +3,13 @@
 //  BankManagerUIApp
 //
 //  Copyright (c) 2022 Minii All rights reserved.
-        
+
 import UIKit
 
 class BankViewController: UIViewController {
     let bankView = BankView()
     let bank: Bank = Bank()
+    var timer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,6 +18,14 @@ class BankViewController: UIViewController {
         
         addObserveStartWork()
         addObserveEndWork()
+        
+        timer = Timer.scheduledTimer(
+            timeInterval: 0.0001,
+            target: self,
+            selector: #selector(timerValueChanged(_:)),
+            userInfo: nil,
+            repeats: true
+        )
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -24,6 +33,10 @@ class BankViewController: UIViewController {
         bank.startWork()
         
         bank.resetCustomerQueue()
+    }
+    
+    @objc func timerValueChanged(_ timer: Timer) {
+        bankView.updateWorkTimeLabel(input: timer.timeInterval.description)
     }
 }
 
@@ -38,7 +51,7 @@ private extension BankViewController {
             guard let business = BankBusiness.allCases.randomElement() else { continue }
             let newCustomer: Customer = Customer(ticketNumber: turn, business: business)
             bank.addCustomer(customer: newCustomer)
-            bankView.addNewCustomerView(customer: newCustomer)
+            bankView.addWaitingPerson(customer: newCustomer)
         }
     }
 }
@@ -71,11 +84,9 @@ private extension BankViewController {
         
         switch notiCase {
         case .start:
-            bankView.popNewCustomerView(customer: customer)
-            bankView.addNewWorkingCustomerView(customer: customer)
+            bankView.addWorkingPerson(customer: customer)
         case .end:
-            bankView.popWorkingCustomerView(customer: customer)
-
+            bankView.popWorkingPerson(customer: customer)
         }
     }
 }

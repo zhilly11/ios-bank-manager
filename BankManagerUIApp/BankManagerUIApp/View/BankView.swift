@@ -90,19 +90,20 @@ final class BankView: UIView {
         ])
     }
     
-    func addNewCustomerView(customer: Customer) {
+    func addWaitingPerson(customer: Customer) {
         waitingLineScrollView.inputCustomer(customer: customer)
     }
     
-    func popNewCustomerView(customer: Customer) {
+    func addWorkingPerson(customer: Customer) {
         waitingLineScrollView.popCustomer(customer: customer)
-    }
-    
-    func addNewWorkingCustomerView(customer: Customer) {
         workingLineScrollView.inputCustomer(customer: customer)
     }
     
-    func popWorkingCustomerView(customer: Customer) {
+    func popWorkingPerson(customer: Customer) {
         workingLineScrollView.popCustomer(customer: customer)
+    }
+    
+    func updateWorkTimeLabel(input: String) {
+        userTopControlStackView.updateWorkTimeLabel(input: input)
     }
 }

@@ -33,4 +33,8 @@ final class UserTopControlStackView: UIStackView {
             addArrangedSubview($0)
         }
     }
+    
+    func updateWorkTimeLabel(input: String) {
+        workTimeLabel.updateWorkTimeLabel(input: input)
+    }
 }
